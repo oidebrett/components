@@ -1,9 +1,9 @@
+import EditorNode from "../../components/antd/EditorNode";  
 
-import MyComponent from "../components/MyComponent";
 
 export default {
-  title: "MyComponent",
-  component: MyComponent,
+  title: "Antd/EditorNode",
+  component: EditorNode,
 }
 
 export const Default = {

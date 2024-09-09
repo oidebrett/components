@@ -1,8 +1,7 @@
-import Sidebar from "../components/Sidebar";
 import { SearchOutlined } from '@ant-design/icons';
 
 // Mock componentService
-const mockComponentService = {
+export const mockComponentService = {
     getComponents: () => [
       {
         _id: 'component1',
@@ -28,16 +27,3 @@ const mockComponentService = {
       },
     ],
   };
-
-export default {
-  title: "Sidebar",
-  component: Sidebar,
-}
-
-
-export const Default = {
-  args: {
-    //👇 The args you need here will depend on your component
-    componentService: mockComponentService,
-  },
-};

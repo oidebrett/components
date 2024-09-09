@@ -1,9 +1,9 @@
-import EditorNode from "../components/EditorNode";
+import ProDemo from "../../components/antd/ProDemo";
 
 
 export default {
-  title: "EditorNode",
-  component: EditorNode,
+  title: "Antd/ProDemo",
+  component: ProDemo,
 }
 
 export const Default = {

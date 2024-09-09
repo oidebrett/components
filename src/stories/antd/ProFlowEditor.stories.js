@@ -1,8 +1,9 @@
-import ProDemo from "../components/ProDemo";
+import ProFlowEditor from "../../components/antd/ProFlowEditor";  
+
 
 export default {
-  title: "ProDemo",
-  component: ProDemo,
+  title: "Antd/ProFlowEditor",
+  component: ProFlowEditor,
 }
 
 export const Default = {

@@ -1,12 +1,4 @@
-
-import DocumentView from "../components/DocumentView";
-
-export default {
-  title: "DocumentView",
-  component: DocumentView,
-}
-
-const htmlData =  `
+export const data =  `
 <table>
   <thead>
     <tr>
@@ -62,9 +54,3 @@ const htmlData =  `
   </tbody>
 </table> 
 `;
-
-export const Default = {
-  args: {
-    //👇 The args you need here will depend on your component
-    data: htmlData },
-};

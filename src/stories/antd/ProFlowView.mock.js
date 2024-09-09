@@ -1,6 +1,5 @@
-import ProFlowView from "../components/ProFlowView";
 
-const nodes = [
+export const nodes = [
   {
     id: 'a1',
     data: {
@@ -26,7 +25,8 @@ const nodes = [
     },
   },
 ];
-const edges = [
+
+export const edges = [
   {
     id: 'a1-a2',
     source: 'a1',
@@ -40,15 +40,3 @@ const edges = [
   },
 ];
 
-export default {
-  title: "ProFlowView",
-  component: ProFlowView,
-}
-
-export const Default = {
-  args: {
-    //👇 The args you need here will depend on your component
-    nodes: nodes,
-    edges: edges,
-  },
-};

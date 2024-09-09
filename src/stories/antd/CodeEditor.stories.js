@@ -1,7 +1,7 @@
-import CodeEditor from "../components/CodeEditor";
+import CodeEditor from "../../components/antd/CodeEditor";
 
 export default {
-  title: "CodeEditor",
+  title: "Antd/CodeEditor",
   component: CodeEditor,
 }
 

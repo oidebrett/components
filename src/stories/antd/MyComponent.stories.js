@@ -1,9 +1,9 @@
-import ProFlowEditor from "../components/ProFlowEditor";
 
+import MyComponent from "../../components/antd/MyComponent";
 
 export default {
-  title: "ProFlowEditor",
-  component: ProFlowEditor,
+  title: "Antd/MyComponent",
+  component: MyComponent,
 }
 
 export const Default = {

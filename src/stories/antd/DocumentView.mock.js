@@ -1,12 +1,4 @@
-
-import DataView from "../components/DataView";
-
-export default {
-  title: "Dataview",
-  component: DataView,
-}
-
-const htmlData =  `
+export const data =  `
 <table>
   <thead>
     <tr>
@@ -63,9 +55,3 @@ const htmlData =  `
 </table> 
 `;
 
-export const Default = {
-  args: {
-    //👇 The args you need here will depend on your component
-    data: htmlData,
-  },
-};
