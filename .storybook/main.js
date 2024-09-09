@@ -5,17 +5,15 @@ export default {
     '@storybook/addon-essentials',
     '@chromatic-com/storybook'
   ],
-
   framework: {
     name: '@storybook/react-vite',
     options: {}
   },
-
   docs: {
     autodocs: true
   },
-
   typescript: {
     reactDocgen: 'react-docgen-typescript'
-  }
+  },
+  staticDirs: ['../public'],
 };
