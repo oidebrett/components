@@ -26,7 +26,7 @@ const useStyles = createStyles(() => {
     };
   });
 
-const StringRender = (node) => {
+const StringNode = (node) => {
     const { handles, id, selected } = node;
     const { styles, cx } = useStyles();
   
@@ -48,4 +48,4 @@ const StringRender = (node) => {
   
 }
 
-export default StringRender
+export default StringNode

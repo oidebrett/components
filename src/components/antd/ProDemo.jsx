@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlowEditor, FlowEditorProvider, FlowPanel } from '@ant-design/pro-flow';
-import  StringRender  from './StringRender';
+import  StringNode  from './StringNode';
 import BtnGroup from './btnGroup';
 import { createStyles } from 'antd-style';
 
@@ -28,7 +28,7 @@ const ProFlowDemo = () => {
   
     return (
       <div className={styles.container}>
-        <FlowEditor nodeTypes={{ StringNode: StringRender }} miniMap={false} devtools={true}>
+        <FlowEditor nodeTypes={{ StringNode: StringNode }} miniMap={false} devtools={true}>
           <FlowPanel position="top-center">
             <BtnGroup />
           </FlowPanel>

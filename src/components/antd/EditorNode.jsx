@@ -1,5 +1,9 @@
-import { EditNode, Handle, Position } from '@ant-design/pro-flow';
+import { NodeField, TextArea, Handle, Position } from '@ant-design/pro-flow';
+import { Button } from 'antd';
+
 import { createStyles } from 'antd-style';
+
+import EditNode  from './EditNode';
 
 const useStyles = createStyles(() => {
     return {
@@ -37,7 +41,13 @@ const EditorNode = (node) => {
         position={Position.Left}
       />
 
-      <EditNode.Preview title={'输出'}></EditNode.Preview>
+      <EditNode.Preview title={'Output'}>
+        <TextArea placeholder={'Enter text here'} type={'block'} />
+        <NodeField id={'variable'} title={'Variable 1'}>
+          <TextArea placeholder={'Enter text here'} type={'block'} />
+        </NodeField>
+        <Button onClick={() => alert(true)}>Save</Button>
+      </EditNode.Preview>
 
       <Handle
         id={typeof handles?.source === 'string' ? handles?.source : id}
