@@ -8,12 +8,13 @@ import {
     Inspector,
     useFlowEditor,
   } from '@ant-design/pro-flow';
-  import { Button } from 'antd';
-  import { useCallback, useEffect, useState } from 'react';
-  import StringNode from './StringNode';
-  import NodeMenu from './NodeMenu';
-  import { createStyles } from 'antd-style';
-  import EditorNode from './EditorNode';
+import { Button } from 'antd';
+import { useCallback, useEffect, useState } from 'react';
+import StringNode from './StringNode';
+import NodeMenu from './NodeMenu';
+import { createStyles } from 'antd-style';
+import EditorNode from './EditorNode';
+import CustomNode from './CustomNode';
 
   const useStyles = createStyles(() => {
     return {
@@ -66,11 +67,22 @@ import {
     StringNode: StringNode,
     BasicNode: BasicNode,
     EditorNode: EditorNode,
+    CustomNode: CustomNode,
   };
   const ProFlowDemo = () => {
     const editor = useFlowEditor();
     const { styles } = useStyles();
     const [open, setOpen] = useState(false);
+    const [nodes, setNodes] = useState([
+        { id: 'a1',
+            type: 'EditorNode',
+            position: { x: 200, y: 100 },
+            data: {
+              title: '123',
+              aaa: '456',
+            }
+        }
+    ]);
   
     const onDragOver = useCallback((event) => {
       event.preventDefault();
@@ -105,20 +117,16 @@ import {
         };
   
         editor.addNode(newNode);
+
+        setNodes(nodes => [...nodes, newNode]);
       },
       [editor],
     );
-  
+
+
+    
     useEffect(() => {
-      editor.addNode({
-        id: 'a1',
-        type: 'EditorNode',
-        position: { x: 200, y: 100 },
-        data: {
-          title: '123',
-          aaa: '456',
-        },
-      });
+      editor.addNodes(nodes);
     }, [editor]);
 
 
@@ -133,6 +141,9 @@ import {
             onDrop,
             onDragOver,
             onPaneClick: () => setOpen(false),
+//            onNodeClick: (e, node) => alert("node clicked", node),
+            onEdgeClick: (e, edge) => alert(JSON.stringify(editor)),
+
           }}
           miniMap={false}
           devtools={false}

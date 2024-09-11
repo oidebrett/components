@@ -1,8 +1,7 @@
+import { useState } from 'react';
 import { NodeField, TextArea, Handle, Position } from '@ant-design/pro-flow';
 import { Button } from 'antd';
-
 import { createStyles } from 'antd-style';
-
 import EditNode  from './EditNode';
 
 const useStyles = createStyles(() => {
@@ -33,6 +32,8 @@ const EditorNode = (node) => {
   const { handles, id, selected } = node;
   const { styles, cx } = useStyles();
 
+  const [title, setTitle] = useState("Output");
+
   return (
     <div className={cx(styles.editNode, selected && 'selected')}>
       <Handle
@@ -41,7 +42,7 @@ const EditorNode = (node) => {
         position={Position.Left}
       />
 
-      <EditNode.Preview title={'Output'}>
+      <EditNode.Preview title={title} >
         <TextArea placeholder={'Enter text here'} type={'block'} />
         <NodeField id={'variable'} title={'Variable 1'}>
           <TextArea placeholder={'Enter text here'} type={'block'} />

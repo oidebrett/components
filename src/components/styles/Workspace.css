@@ -1,3 +1,12 @@
+.FlowMenu {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 3px 6px grey;
+}
+.FlowMenu ul {
+    list-style: none;
+    padding-left: 0px;
+}
 .NodeMenu, .GlobalFlowMenu {
     padding: 1rem;
     margin-bottom: 1rem;

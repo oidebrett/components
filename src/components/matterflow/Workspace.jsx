@@ -8,6 +8,7 @@ import CustomNodeFactory from './CustomNode/CustomNodeFactory';
 import MFPortFactory from './MFPort/MFPortFactory';
 import * as API from '../API';
 import NodeMenu from './NodeMenu';
+import FlowMenu from './FlowMenu';
 import '../styles/Workspace.css';
 import GlobalFlowMenu from "./GlobalFlowMenu";
 import DialogConfirmation from './DialogConfirmation';
@@ -18,6 +19,7 @@ import { useNavigate } from "react-router-dom";
  */
 const Workspace = (props) => {
     const [nodes, setNodes] = useState([]);
+    const [flows, setFlows] = useState([]);
     const [globals, setGlobals] = useState([]);
     const engine = useRef(createEngine()).current;
     const model = useRef(new DiagramModel()).current;
@@ -80,6 +82,15 @@ const Workspace = (props) => {
     const getGlobalVars = () => {
         API.getGlobalVars()
             .then(vars => setGlobals(vars))
+            .catch(err => console.log(err));
+    };
+
+    /**
+     * Retrieve available flows from server to display in the menu
+     */
+    const getAvailableFlows = () => {
+        API.getFlows()
+            .then(flows => setFlows(flows))
             .catch(err => console.log(err));
     };
 
@@ -233,6 +244,7 @@ const Workspace = (props) => {
             .catch(err => console.log(err));
     };
 
+
     return (
         <>
             <Row className="mb-3">
@@ -252,16 +264,10 @@ const Workspace = (props) => {
                 </Col>
             </Row>
             <Row className="Workspace">
-                <Col xs={3}>
-                    <NodeMenu nodes={nodes} onUpload={getAvailableNodes} />
-                    <GlobalFlowMenu
-                        menuItems={nodes["Flow Control"] || []}
-                        nodes={globals}
-                        onUpdate={getGlobalVars}
-                        diagramModel={model}
-                    />
+                <Col xs={2}>
+                    <FlowMenu flows={flows} onUpload={getAvailableFlows} />
                 </Col>
-                <Col xs={9} style={{ paddingLeft: 0 }}>
+                <Col xs={8} style={{ paddingLeft: 0 }}>
                     <div
                         style={{ position: 'relative', flexGrow: 1 }}
                         onDrop={handleNodeCreation}
@@ -269,6 +275,15 @@ const Workspace = (props) => {
                     >
                         <CanvasWidget className="diagram-canvas" engine={engine} />
                     </div>
+                </Col>
+                <Col xs={2}>
+                    <NodeMenu nodes={nodes} onUpload={getAvailableNodes} />
+                    <GlobalFlowMenu
+                        menuItems={nodes["Flow Control"] || []}
+                        nodes={globals}
+                        onUpdate={getGlobalVars}
+                        diagramModel={model}
+                    />
                 </Col>
             </Row>
         </>

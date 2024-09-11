@@ -125,7 +125,8 @@ export async function addFlow(flow) {
 * @returns {Promise<Object>} - server response (flow items)
 */
 export async function getFlows() {
-  return fetchWrapper("/flow");
+  return [];
+//  return fetchWrapper("/flow");
 }
 
 /**

@@ -58,6 +58,13 @@ export default () => {
         String Node
       </div>
       <div
+        className={cx(styles.dndnode, styles.input)}
+        onDragStart={(event) => onDragStart(event, 'CustomNode')}
+        draggable
+      >
+        Custom Node
+      </div>
+      <div
         className={styles.dndnode}
         onDragStart={(event) => onDragStart(event, 'BasicNode')}
         draggable
