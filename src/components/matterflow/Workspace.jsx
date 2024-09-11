@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Row, Col, Button } from 'react-bootstrap';
+import { Row, Col, Button, Offcanvas } from 'react-bootstrap';
 import createEngine, { DiagramModel } from '@projectstorm/react-diagrams';
 import { CanvasWidget } from '@projectstorm/react-canvas-core';
 import MFLinkFactory from './MFLink/MFLinkFactory';
@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 const Workspace = (props) => {
     const [nodes, setNodes] = useState([]);
     const [flows, setFlows] = useState([]);
+    const [show, setShow] = useState(true);
     const [globals, setGlobals] = useState([]);
     const engine = useRef(createEngine()).current;
     const model = useRef(new DiagramModel()).current;
@@ -244,6 +245,11 @@ const Workspace = (props) => {
             .catch(err => console.log(err));
     };
 
+    /**
+     * Handlers for offcanvas dialog
+     */
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
         <>
@@ -261,6 +267,7 @@ const Workspace = (props) => {
                     <Button size="sm" onClick={clear}>Clear</Button>{' '}
                     <Button size="sm" onClick={execute}>Execute</Button>{' '}
                     <Button size="sm" onClick={manuallyCreateNodeWorkspace}>ManuallyCreateNodeWorkspace</Button>
+                    <Button size="sm" onClick={handleShow}>Console</Button>
                 </Col>
             </Row>
             <Row className="Workspace">
@@ -274,6 +281,16 @@ const Workspace = (props) => {
                         onDragOver={(event) => event.preventDefault()}
                     >
                         <CanvasWidget className="diagram-canvas" engine={engine} />
+                        <Offcanvas placement='bottom' show={show} onHide={handleClose} scroll={false} backdrop={true}>
+                            <Offcanvas.Header closeButton>
+                            <Offcanvas.Title>Offcanvas</Offcanvas.Title>
+                            </Offcanvas.Header>
+                            <Offcanvas.Body>
+                            Some text as placeholder. In real life you can have the elements you
+                            have chosen. Like, text, images, lists, etc.
+                            </Offcanvas.Body>
+                        </Offcanvas>
+
                     </div>
                 </Col>
                 <Col xs={2}>
