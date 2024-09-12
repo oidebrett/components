@@ -9,6 +9,7 @@ import MFPortFactory from './MFPort/MFPortFactory';
 import * as API from '../API';
 import NodeMenu from './NodeMenu';
 import FlowMenu from './FlowMenu';
+import ModelMenu from './ModelMenu';
 import '../styles/Workspace.css';
 import GlobalFlowMenu from "./GlobalFlowMenu";
 import DialogConfirmation from './DialogConfirmation';
@@ -20,7 +21,8 @@ import { useNavigate } from "react-router-dom";
 const Workspace = (props) => {
     const [nodes, setNodes] = useState([]);
     const [flows, setFlows] = useState([]);
-    const [show, setShow] = useState(true);
+    const [models, setModels] = useState([]);
+    const [show, setShow] = useState(false);
     const [globals, setGlobals] = useState([]);
     const engine = useRef(createEngine()).current;
     const model = useRef(new DiagramModel()).current;
@@ -92,6 +94,15 @@ const Workspace = (props) => {
     const getAvailableFlows = () => {
         API.getFlows()
             .then(flows => setFlows(flows))
+            .catch(err => console.log(err));
+    };
+
+    /**
+     * Retrieve available models from server to display in the menu
+     */
+    const getAvailableModels = () => {
+        API.getModels()
+            .then(models => setModels(models))
             .catch(err => console.log(err));
     };
 
@@ -271,10 +282,12 @@ const Workspace = (props) => {
                 </Col>
             </Row>
             <Row className="Workspace">
-                <Col xs={2}>
+                <Col xs={3}>
                     <FlowMenu flows={flows} onUpload={getAvailableFlows} />
+                    <ModelMenu models={models} onUpload={getAvailableModels} />
+                    
                 </Col>
-                <Col xs={8} style={{ paddingLeft: 0 }}>
+                <Col xs={7} style={{ paddingLeft: 0 }}>
                     <div
                         style={{ position: 'relative', flexGrow: 1 }}
                         onDrop={handleNodeCreation}

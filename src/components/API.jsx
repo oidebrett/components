@@ -171,7 +171,8 @@ export async function deleteFlow(flow_id) {
 * @returns {Promise<Object>} - server response (connection items)
 */
 export async function getModels() {
-  return fetchWrapper("/model");
+  return [];
+//  return fetchWrapper("/model");
 }
 
 /**
@@ -230,6 +231,7 @@ export async function deleteModel(model_id) {
 * @returns {Promise<Object>} - server response (connection items)
 */
 export async function getInstances() {
+//  return [];
   return fetchWrapper("/instance");
 }
 
@@ -268,7 +270,8 @@ export async function updateInstance(instance_id, config) {
  * @returns {Promise<Object>} - server response (instance info)
  */
 export async function getInstance(instanceId) {
-  return fetchWrapper(`/instance/${instanceId}`);
+  return {};
+//  return fetchWrapper(`/instance/${instanceId}`);
 }
 
 
